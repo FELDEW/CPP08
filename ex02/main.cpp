@@ -1,7 +1,5 @@
 #include "mutantstack.hpp"
-#include <vector>
-
-
+/*
 class Awesome 
 {
 	public:
@@ -25,25 +23,35 @@ std::ostream& operator<<(std::ostream &out, const Awesome& origin)
 	out << origin.getN();
 	return (out);
 }
-
+*/
 
 int main()
 {
 	std::cout << "------Int--------" << std::endl;
 	MutantStack<int> mstack;
+	std::cout << "Add: " << 5 << std::endl;
 	mstack.push(5);
+	std::cout << "Add: " << 17 << std::endl;
 	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
+	std::cout << "Top: " << mstack.top() << std::endl;
+	std::cout << "Size of stack: " << mstack.size() << std::endl;
+	std::cout << "Delete top element" << std::endl;
 	mstack.pop();
 	std::cout << "Size of stack: " << mstack.size() << std::endl;
+	std::cout << "Add: " << 3 << std::endl;
 	mstack.push(3);
 	std::cout << "Top: " << mstack.top() << std::endl;
+	std::cout << "Add: " << 5 << std::endl;
 	mstack.push(5);
+	std::cout << "Add: " << 737 << std::endl;
 	mstack.push(737);
 	std::cout << "Top: " << mstack.top() << std::endl;
+	std::cout << "Delete top element" << std::endl;
 	mstack.pop();
 	std::cout << "Top: " << mstack.top() << std::endl;
+	std::cout << "Add: " << 0 << std::endl;
 	mstack.push(0);
+	std::cout << "Size of stack: " << mstack.size() << std::endl;
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
 	++it;
@@ -64,6 +72,7 @@ int main()
 		++its;
 	}
 	std::cout << std::endl;
+	/*
 	std::cout << "---------------------------" << std::endl;
 	std::cout << "------Awesome class--------" << std::endl;
 	std::cout << "---------------------------" << std::endl;
@@ -106,5 +115,6 @@ int main()
 		++itsawe;
 	}
 	std::cout << std::endl;
+	*/
 	return (0);
 }
