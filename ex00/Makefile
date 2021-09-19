@@ -1,25 +1,37 @@
+NAME = a.out
 
-SRCS			= main.cpp
+SRCS = ./main.cpp
 
-OBJS			= $(SRCS:.cpp=.o)
+HEADER = ./easyfind.hpp
 
-CPP				= clang++
-RM				= rm -f
-CPPFLAGS		= -Wall -Wextra -Werror -std=c++98 -I.
+OBJS = $(SRCS:%.cpp=%.o)
 
-NAME			= easyfind
+DEPENDS = $(OBJS:%.o=%.d)
 
-all:			$(NAME)
+CLANG =     clang++
 
-$(NAME):		$(OBJS)
-				$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
+CPPFLAGS =  -Wall -Wextra -Werror -std=c++98 -I.
 
-clean:
-				$(RM) $(OBJS)
+RM =        rm -f
 
-fclean:			clean
-				$(RM) $(NAME)
+all :       ${NAME}
 
-re:				fclean $(NAME)
+$(NAME) :   $(OBJS) 
+			$(CLANG) $(CPPFLAGS) $(OBJS) -o $@
 
-.PHONY:			all clean fclean re
+%.o:  %.cpp $(HEADER)
+			${CLANG} $(CPPFLAGS) -MMD -o $@ -c $<
+
+-include	$(DEPENDS)
+
+clean :     
+			$(RM) $(OBJS)
+			$(RM) $(DEPENDS)
+
+
+fclean  :   clean
+			$(RM) ${NAME}
+
+re :        fclean all
+
+.PHONY :    all clean fclean re

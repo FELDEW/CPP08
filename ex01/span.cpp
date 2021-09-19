@@ -54,7 +54,8 @@ unsigned int Span::shortestSpan()
 		throw Span::SpanException();
 	it = this->array.begin();
 	shortestdiff = std::abs(*it - *(++it));
-	while (it != --this->array.end())
+	--this->array.end();
+	while (it != this->array.end())
 	{
 		 diff = std::abs(*it - *(++it));
 		 if (diff < shortestdiff)

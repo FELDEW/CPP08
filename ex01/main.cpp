@@ -25,12 +25,12 @@ int main(void)
 	}
 	try
 	{
-		std::cout << "----------Add 5000 elems------------" << std::endl;
+		std::cout << "----------Add 5000+ elems------------" << std::endl;
 		array.addNumber(3);
 		array.addNumber(17);
 		array.addNumber(9);
 		array.addNumber(11);
-		std::cout << "Size of my array: " << array.getSize() << std::endl;
+		std::cout << "Size of array: " << array.getSize() << std::endl;
 		std::cout << "Shortest span: " << array.shortestSpan() << std::endl;
 		std::cout << "Longest span: " << array.longestSpan() << std::endl;
 		std::vector<int> array2;
@@ -43,6 +43,7 @@ int main(void)
 		std::cout << "Size of my array: " << array.getSize() << std::endl;
 		std::cout << "Shortest span: " << array.shortestSpan() << std::endl;
 		std::cout << "Longest span: " << array.longestSpan() << std::endl;
+		std::cout << "Size of array: " << array.getSize() << std::endl;
 	}
 	catch(const std::exception& e)
 	{

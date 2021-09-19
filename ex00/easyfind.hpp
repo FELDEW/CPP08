@@ -8,7 +8,7 @@ class OutOfLimitsException: public std::exception
 {
 	virtual const char* what() const throw()
 	{
-		return ("Out of limits!");
+		return ("No matches!");
 	}
 };
 

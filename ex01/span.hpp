@@ -26,11 +26,11 @@ class Span
 		void addNumber(int const newElement);
 		unsigned int getSize();
 		template<typename InputIterator>
-		void addNumber(InputIterator begin, InputIterator end)
+		void addNumber(InputIterator _first, InputIterator _last)
 		{
-			if (this->array.size() + std::abs(std::distance(begin, end)) > this->_length)
+			if (this->array.size() + std::abs(std::distance(_first, _last)) > this->_length)
 				throw Span::SpanException();
-			this->array.insert(begin, end);
+			this->array.insert(_first, _last);
 		}
 };
 
