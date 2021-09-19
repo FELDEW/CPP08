@@ -1,30 +1,37 @@
-NAME		=	mutantstack
+NAME = a.out
 
-SRCS		=	./main.cpp 
-	
-OBJS		=	$(SRCS:.cpp=.o)
+SRCS = ./main.cpp
 
-CPP			=	clang++
+HEADER = ./mutantstack.hpp
 
-%.o:		%.cpp 
-			$(CPP)  $(CFLAGS) -c $< -o $(<:.cpp=.o)
+OBJS = $(SRCS:%.cpp=%.o)
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+DEPENDS = $(OBJS:%.o=%.d)
 
-RM			=	rm -f
+CLANG =     clang++
 
-all :		$(NAME)
+CPPFLAGS =  -Wall -Wextra -Werror -std=c++98 -I.
 
-$(NAME) :	$(OBJS)
-			$(CPP) $(CFLAGS) -o $(NAME) $(OBJS) -I.
-			@echo "span"
+RM =        rm -f
 
-clean :		
+all :       ${NAME}
+
+$(NAME) :   $(OBJS) 
+			$(CLANG) $(CPPFLAGS) $(OBJS) -o $@
+
+%.o:  %.cpp $(HEADER)
+			${CLANG} $(CPPFLAGS) -MMD -o $@ -c $<
+
+-include	$(DEPENDS)
+
+clean :     
 			$(RM) $(OBJS)
+			$(RM) $(DEPENDS)
 
-fclean 	:	clean
-			$(RM) $(NAME)
 
-re :		fclean all
+fclean  :   clean
+			$(RM) ${NAME}
 
-.PHONY :	all clean fclean re
+re :        fclean all
+
+.PHONY :    all clean fclean re
